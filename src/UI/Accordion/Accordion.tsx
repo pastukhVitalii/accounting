@@ -19,6 +19,7 @@ const useStyles = makeStyles((theme: Theme) =>
     createStyles({
         root: {
             width: '70%',
+            margin: '10px'
         },
 
     }),

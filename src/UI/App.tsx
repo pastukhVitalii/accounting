@@ -3,16 +3,23 @@ import './App.css';
 import {useSelector} from "react-redux";
 import {AppStateType} from "../BLL/store";
 import {ExpensesDateType} from "../BLL/types/entities";
-import {MyAccordion} from "./MyAccordion/MyAccordion";
+import {MyAccordion} from "./Accordion/Accordion";
+import {MyDate} from "./Date/Date";
+import {Container, Grid} from "@material-ui/core";
+import {MySelect} from "./Select/Select";
 
 function App() {
 
     const expenses = useSelector<AppStateType, Array<ExpensesDateType>>(state => state.expensesR.expenses);
 
     return (
-        <div className="App">
-            {expenses.map(e => <MyAccordion key={e.id} id={e.id} date={e.date} expenses={e.expenses}/>)}
-        </div>
+        <Container fixed>
+            <Grid container justify={'center'}>
+                <MyDate/>
+                <MySelect/>
+                {expenses.map(e => <MyAccordion key={e.id} id={e.id} date={e.date} expenses={e.expenses}/>)}
+            </Grid>
+        </Container>
     );
 }
 
