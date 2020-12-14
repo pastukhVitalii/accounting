@@ -1,7 +1,12 @@
-import React from 'react';
+import React, {useCallback} from 'react';
 import {createStyles, FormControl, InputLabel, makeStyles, MenuItem, Select, Theme} from "@material-ui/core";
 
-export const MySelect = React.memo( () => {
+type SelectType = {
+    currency: string
+    handleChange: (value: string) => void
+}
+
+export const MySelect = React.memo( (props: SelectType) => {
     console.log('Select');
 
     const useStyles = makeStyles((theme: Theme) =>
@@ -18,14 +23,10 @@ export const MySelect = React.memo( () => {
 
     const classes = useStyles();
 
-    // const dispatch = useDispatch();
-    /*const handleChange = useCallback((event: React.ChangeEvent<{ value: unknown }>) => {
-        setStatus(event.target.value as string);
-    }, [statusApi, dispatch]);*/
-    const [currency, setCurrency] = React.useState('USD');
-    const handleChange = (event: React.ChangeEvent<{ value: unknown }>) => {
-        setCurrency(event.target.value as string);
-    };
+    const onChange = useCallback((event: React.ChangeEvent<{ value: unknown }>) => {
+        props.handleChange(event.target.value as string);
+        console.log(event.target.value as string);
+    }, [props.handleChange]);
 
     return (
         <>
@@ -34,14 +35,14 @@ export const MySelect = React.memo( () => {
                 <Select
                     labelId="demo-simple-select-outlined-label"
                     id="demo-simple-select-outlined"
-                    value={10}
-                    defaultValue={currency}
-                    onChange={handleChange}
+                    value={props.currency}
+                    defaultValue={props.currency}
+                    onChange={onChange}
                     label={'Currency'}
                 >
-                    <MenuItem value={10}>USD</MenuItem>
-                    <MenuItem value={40}>PLN</MenuItem>
-                    <MenuItem value={30}>UA</MenuItem>
+                    <MenuItem value={'USD'}>USD</MenuItem>
+                    <MenuItem value={'PLN'}>PLN</MenuItem>
+                    <MenuItem value={'UA'}>UA</MenuItem>
                 </Select>
             </FormControl>
         </>

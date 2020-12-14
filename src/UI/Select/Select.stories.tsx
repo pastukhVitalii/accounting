@@ -8,9 +8,9 @@ export default {
     component: MySelect,
 } as Meta;
 
-export const Select = () => {
+/*export const Select = () => {
     return <>
         <MySelect/>
     </>
-}
+}*/
 

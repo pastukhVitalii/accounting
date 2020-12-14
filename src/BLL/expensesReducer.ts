@@ -1,6 +1,4 @@
-// export const CHANGE_STATUS = 'SHELF/CHECK_CHECKBOX';
-
-import {ExpensesDateType} from "./types/entities";
+import {ExpensesDateType, ExpenseType} from "./types/entities";
 
 export type initialStateType = {
     expenses: Array<ExpensesDateType>
@@ -22,19 +20,22 @@ export const initialState: initialStateType = {
     ]
 }
 
-const expensesReducer = (state: initialStateType = initialState, /*action: ActionType*/) => {
-    /*switch (action.type) {
-
+const expensesReducer = (state: initialStateType = initialState, action: ActionType) => {
+    switch (action.type) {
+        case 'ADD-EXPENSE':
+return {
+    ...state, expenses: [action.expense, ...state.expenses]};
         default:
             return state
-    }*/
+    }
     return state
 }
 
 export default expensesReducer;
 
 // Action
+export const addExpenseAC = (expense: ExpenseType) => ({type: 'ADD-EXPENSE', expense} as const)
+export type AddExpenseActionType = ReturnType<typeof addExpenseAC>;
 
-
-
+type ActionType = AddExpenseActionType;
 

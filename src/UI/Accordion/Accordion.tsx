@@ -6,7 +6,7 @@ import AccordionDetails from '@material-ui/core/AccordionDetails';
 import Typography from '@material-ui/core/Typography';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import {ExpenseType} from "../../BLL/types/entities";
-import {FormControlLabel, IconButton} from "@material-ui/core";
+import {FormControlLabel, IconButton} from '@material-ui/core';
 import DeleteIcon from '@material-ui/icons/Delete';
 
 type MyAccordionType = {
@@ -25,7 +25,7 @@ const useStyles = makeStyles((theme: Theme) =>
     }),
 );
 
-export const MyAccordion = (props: MyAccordionType) => {
+export const MyAccordion = React.memo((props: MyAccordionType) => {
     const classes = useStyles();
 
     return (
@@ -50,4 +50,4 @@ export const MyAccordion = (props: MyAccordionType) => {
             </Accordion>
         </div>
     );
-}
+})
